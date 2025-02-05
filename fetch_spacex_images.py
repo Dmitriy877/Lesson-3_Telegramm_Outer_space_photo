@@ -4,7 +4,7 @@ import os.path
 import argparse
 from save_picture_script import save_picture
 
-directory_spacex = "spacex_images"
+directory_spacex = "images"
 filename_spacex = "spacex_image"
 file_type_spacex = ".jpeg"
 
@@ -19,7 +19,6 @@ def createParser():
 
 def fetch_spacex_images(flight_id):
     if flight_id.flight_id:
-
         api_spacex_metod_url = 'https://api.spacexdata.com/v3/launches'
         payload = {"flight_id": flight_id.flight_id}
         response = requests.get(api_spacex_metod_url, params=payload)
