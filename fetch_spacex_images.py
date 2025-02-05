@@ -8,8 +8,6 @@ directory_spacex = "images"
 filename_spacex = "spacex_image"
 file_type_spacex = ".jpeg"
 
-# flight_id = "5a9fc479ab70786ba5a1eaaa"
-
 
 def createParser():
     parser = argparse.ArgumentParser()
