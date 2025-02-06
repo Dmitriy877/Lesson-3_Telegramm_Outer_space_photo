@@ -6,9 +6,9 @@ from dotenv import load_dotenv
 from save_picture_script import save_picture
 from file_resolution_script import file_resolution
 
+
 directory_epic = "images"
 filename_epic = "epic_image"
-token = os.environ["NASA_EPIC_API_KEY"]
 amount_pictures = 5
 
 
@@ -18,7 +18,7 @@ def createParser():
     return parser
 
 
-def epic_pictures(amount_epic_pictures):
+def epic_pictures(amount_epic_pictures, token):
     load_dotenv()
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
@@ -48,16 +48,18 @@ def epic_pictures(amount_epic_pictures):
 
 def main():
 
-    if not os.path.exists(directory_epic):
-        os.makedirs(directory_epic)
+    load_dotenv()
+    token = os.environ["NASA_EPIC_API_KEY"]
+
+    os.makedirs(directory_epic, exist_ok=True)
 
     parser = createParser()
     amount_epic_pictures = parser.parse_args()
 
     if amount_epic_pictures.amount_epic_pictures:
-        epic_pictures(amount_epic_pictures.amount_epic_pictures)
+        epic_pictures(amount_epic_pictures.amount_epic_pictures, token)
     else:
-        epic_pictures(amount_pictures)
+        epic_pictures(amount_pictures, token)
 
 
 if __name__ == "__main__":

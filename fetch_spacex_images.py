@@ -51,8 +51,7 @@ def fetch_spacex_images(flight_id):
  
 def main():
 
-    if not os.path.exists(directory_spacex):
-        os.makedirs(directory_spacex)
+    os.makedirs(directory_spacex, exist_ok=True)
 
     parser = createParser()
     flight_id = parser.parse_args()
