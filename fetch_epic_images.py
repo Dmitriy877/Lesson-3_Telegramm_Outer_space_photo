@@ -5,9 +5,9 @@ import argparse
 from dotenv import load_dotenv
 from save_picture_script import save_picture
 from file_resolution_script import file_resolution
-load_dotenv()
 
-directory_epic = "images"
+
+directory_epic = "epic_images"
 filename_epic = "epic_image"
 token = os.environ["NASA_EPIC_API_KEY"]
 amount_pictures = 5
@@ -20,6 +20,7 @@ def createParser():
 
 
 def epic_pictures(amount_epic_pictures):
+    load_dotenv()
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
                             params=payload)
