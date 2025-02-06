@@ -29,13 +29,13 @@ def download_nasa_pictures(entered_amount_pictures, token):
                }
     response = requests.get(api_nasa_metod_url, params=payload)
     response.raise_for_status
-    picture_nasa_url_list = response.json()
-    picture_number_list = []
-    for picture_number, picture in enumerate(picture_nasa_url_list):
-        picture_link = picture_nasa_url_list[picture_number]["url"]
-        picture_number_list.append(picture_link)
+    picture_nasa_urls = response.json()
+    pictures = []
+    for picture_number, picture in enumerate(picture_nasa_urls):
+        picture_link = picture_nasa_urls[picture_number]["url"]
+        pictures.append(picture_link)
 
-    for picture_number, picture_url in enumerate(picture_number_list):
+    for picture_number, picture_url in enumerate(pictures):
         file_type_nasa = file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(directory_nasa,
                                       filename_nasa,

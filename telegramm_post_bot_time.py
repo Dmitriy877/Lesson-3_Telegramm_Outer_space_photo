@@ -9,7 +9,7 @@ load_dotenv()
 
 token = os.environ["TELEGRAMM_API_KEY"]
 chat_id = "@OuterSpacePhoto"
-images_list = os.listdir(r"images")
+images = os.listdir(r"images")
 bot = telegram.Bot(token=token)
 
 
@@ -22,12 +22,12 @@ def create_parser():
 def photo_post(post_time):
     post_time_hours = int(post_time) * 3600
     while (True):
-        for image in images_list:
+        for image in images:
             bot.send_photo(chat_id=chat_id,
                            photo=open("images/{0}".format(image),
                                       "rb"))
             time.sleep(post_time_hours)
-        random.shuffle(images_list)
+        random.shuffle(images)
 
 
 def main():

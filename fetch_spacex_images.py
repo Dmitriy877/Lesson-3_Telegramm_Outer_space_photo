@@ -27,9 +27,9 @@ def fetch_spacex_images(flight_id):
         payload = {"flight_id": flight_id.flight_id}
         response = requests.get(api_spacex_metod_url, params=payload)
         response.raise_for_status()
-        picture_spacex_url_list = response.json()[0]["links"]["flickr_images"]
+        picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
-        for picture_number, picture_url in enumerate(picture_spacex_url_list):
+        for picture_number, picture_url in enumerate(picture_spacex_urls):
             path = "{0}/{1}{2}{3}".format(directory_spacex,
                                           filename_spacex,
                                           picture_number,
@@ -42,9 +42,9 @@ def fetch_spacex_images(flight_id):
             api_spacex_metod_url = 'https://api.spacexdata.com/v5/launches/latest'
             response = requests.get(api_spacex_metod_url)
             response.raise_for_status()
-            picture_spacex_url_list = response.json()[0]["links"]["flickr_images"]
+            picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
-            for picture_number, picture_url in enumerate(picture_spacex_url_list):
+            for picture_number, picture_url in enumerate(picture_spacex_urls):
                 path = "{0}/{1}{2}{3}".format(directory_spacex,
                                               filename_spacex,
                                               picture_number,
