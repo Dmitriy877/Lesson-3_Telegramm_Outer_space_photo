@@ -9,7 +9,7 @@ filename_spacex = "spacex_image"
 file_type_spacex = ".jpeg"
 
 
-def createParser():
+def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('flight_id', nargs='?')
     return parser

@@ -12,7 +12,7 @@ filename_epic = "epic_image"
 amount_pictures = 5
 
 
-def createParser():
+def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('amount_epic_pictures', nargs='?')
     return parser
