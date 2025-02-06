@@ -13,7 +13,11 @@ amount_pictures = 5
 
 
 def create_parser():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="""Создает директорию images и сохраняет в нее фотографии
+         компании epic. Введите количество загружаемых фотографий как аргумент,
+        если аргумент не  указан будет загружено 5 фотографий"""
+    )
     parser.add_argument('amount_epic_pictures', nargs='?')
     return parser
 
@@ -53,7 +57,7 @@ def main():
 
     os.makedirs(directory_epic, exist_ok=True)
 
-    parser = createParser()
+    parser = create_parser()
     amount_epic_pictures = parser.parse_args()
 
     if amount_epic_pictures.amount_epic_pictures:

@@ -10,7 +10,13 @@ file_type_spacex = ".jpeg"
 
 
 def create_parser():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+       description=""" Сохраняет фотографии с запуска компании spacex. 
+       Введите id запуска как аргумент, если id запуска
+       не указан будут загружены фотографии с последнего запуска. 
+       Если фотографии при запуске не были сделаны будет выведено сообщение
+       об этом"""
+        )
     parser.add_argument('flight_id', nargs='?')
     return parser
 
@@ -53,7 +59,7 @@ def main():
 
     os.makedirs(directory_spacex, exist_ok=True)
 
-    parser = createParser()
+    parser = create_parser()
     flight_id = parser.parse_args()
     fetch_spacex_images(flight_id)
 

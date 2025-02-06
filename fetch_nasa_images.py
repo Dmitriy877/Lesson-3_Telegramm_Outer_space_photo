@@ -12,7 +12,12 @@ amount_pictures = 5
 
 
 def create_parser():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="""Создает директорию images и сохраняет в нее фотографии
+         компании nasa. Введите количество загружаемых фотографий как аргумент,
+        если аргумент не  указан будет загружено 5 фотографий"""
+
+    )
     parser.add_argument('amount_nasa_pictures', nargs='?')
     return parser
 
@@ -47,7 +52,7 @@ def main():
 
     os.makedirs(directory_nasa, exist_ok=True)
 
-    parser = createParser()
+    parser = create_parser()
     amount_nasa_pictures = parser.parse_args()
 
     if amount_nasa_pictures.amount_nasa_pictures:

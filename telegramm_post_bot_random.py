@@ -11,7 +11,7 @@ chat_id = "@OuterSpacePhoto"
 images_list = os.listdir(r"images")
 
 
-def createParser():
+def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument('image_name', nargs='?')
     return parser
@@ -33,7 +33,7 @@ def post_random_image():
     
 def main():
 
-    parser = createParser()
+    parser = create_parser()
     image_name = parser.parse_args()
 
     if image_name.image_name:

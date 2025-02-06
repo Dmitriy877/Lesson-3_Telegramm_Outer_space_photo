@@ -13,7 +13,7 @@ images_list = os.listdir(r"images")
 bot = telegram.Bot(token=token)
 
 
-def createParser():
+def create_parser():
     parser = argparse.ArgumentParser()
     parser.add_argument("post_time", nargs="?")
     return parser
@@ -32,7 +32,7 @@ def photo_post(post_time):
 
 def main():
 
-    parser = createParser()
+    parser = create_parser()
     post_time = parser.parse_args()
 
     if post_time.post_time:
