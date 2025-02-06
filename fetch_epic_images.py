@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 from save_picture_script import save_picture
 from file_resolution_script import file_resolution
 
-
-directory_epic = "epic_images"
+directory_epic = "images"
 filename_epic = "epic_image"
 token = os.environ["NASA_EPIC_API_KEY"]
 amount_pictures = 5
