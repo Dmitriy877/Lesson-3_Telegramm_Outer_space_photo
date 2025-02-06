@@ -9,14 +9,14 @@ from file_resolution_script import file_resolution
 
 directory_epic = "images"
 filename_epic = "epic_image"
-amount_pictures = 5
 
 
 def create_parser():
     parser = argparse.ArgumentParser(
         description="""Создает директорию images и сохраняет в нее фотографии
          компании epic. Введите количество загружаемых фотографий как аргумент,
-        если аргумент не  указан будет загружено 5 фотографий"""
+        если аргумент не  указан будет загружено 5 фотографий""",
+        argument_default=5
     )
     parser.add_argument('amount_epic_pictures', nargs='?')
     return parser
@@ -60,10 +60,9 @@ def main():
     parser = create_parser()
     amount_epic_pictures = parser.parse_args()
 
-    if amount_epic_pictures.amount_epic_pictures:
-        epic_pictures(amount_epic_pictures.amount_epic_pictures, token)
-    else:
-        epic_pictures(amount_pictures, token)
+    print(amount_epic_pictures)
+
+    epic_pictures(amount_epic_pictures.amount_epic_pictures, token)
 
 
 if __name__ == "__main__":

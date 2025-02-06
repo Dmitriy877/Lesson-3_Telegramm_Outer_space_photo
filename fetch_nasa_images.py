@@ -8,14 +8,14 @@ from file_resolution_script import file_resolution
 
 directory_nasa = "images"
 filename_nasa = "nasa_image"
-amount_pictures = 5
 
 
 def create_parser():
     parser = argparse.ArgumentParser(
         description="""Создает директорию images и сохраняет в нее фотографии
          компании nasa. Введите количество загружаемых фотографий как аргумент,
-        если аргумент не  указан будет загружено 5 фотографий"""
+        если аргумент не  указан будет загружено 5 фотографий""",
+        argument_default=5
 
     )
     parser.add_argument('amount_nasa_pictures', nargs='?')
@@ -55,12 +55,8 @@ def main():
     parser = create_parser()
     amount_nasa_pictures = parser.parse_args()
 
-    if amount_nasa_pictures.amount_nasa_pictures:
-        nasa_pictures(amount_nasa_pictures.amount_nasa_pictures, token)
-    else:
-        nasa_pictures(amount_pictures, token)
+    nasa_pictures(amount_nasa_pictures.amount_nasa_pictures, token)
 
 
 if __name__ == "__main__":
     main()
-      
