@@ -35,8 +35,10 @@ def download_epic_pictures(entered_amount_pictures, token):
         picture_name = epic_urls[number]["image"]
         picture_date = epic_urls[number]["date"].split(" ")[0]
         picture_date_url = picture_date.replace("-", "/")
-        picture_link = """https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png?api_key={2}""".format(picture_date_url, picture_name, token)
-        pictures.append(picture_link)
+        picture_link = requests.get("https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png".format(picture_date_url, picture_name),
+                                    params=payload)
+
+        pictures.append(picture_link.url)
         if entered_amount_pictures == number:
             break
 
