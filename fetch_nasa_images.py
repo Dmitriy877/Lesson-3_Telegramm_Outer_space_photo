@@ -22,7 +22,7 @@ def create_parser():
     return parser
 
 
-def nasa_pictures(entered_amount_pictures, token):
+def download_nasa_pictures(entered_amount_pictures, token):
     api_nasa_metod_url = 'https://api.nasa.gov/planetary/apod'
     payload = {"api_key": token,
                "count": entered_amount_pictures
@@ -55,7 +55,8 @@ def main():
     parser = create_parser()
     entered_amount_pictures = parser.parse_args()
 
-    nasa_pictures(entered_amount_pictures.entered_amount_pictures, token)
+    download_nasa_pictures(entered_amount_pictures.entered_amount_pictures,
+                           token)
 
 
 if __name__ == "__main__":
