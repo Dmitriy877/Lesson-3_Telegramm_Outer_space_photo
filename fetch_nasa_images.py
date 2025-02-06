@@ -24,9 +24,10 @@ def create_parser():
 
 def download_nasa_pictures(entered_amount_pictures, token):
     api_nasa_metod_url = 'https://api.nasa.gov/planetary/apod'
-    payload = {"api_key": token,
-               "count": entered_amount_pictures
-               }
+    payload = {
+        "api_key": token,
+        "count": entered_amount_pictures
+    }
     response = requests.get(api_nasa_metod_url, params=payload)
     response.raise_for_status
     picture_nasa_urls = response.json()
@@ -37,11 +38,12 @@ def download_nasa_pictures(entered_amount_pictures, token):
 
     for picture_number, picture_url in enumerate(pictures):
         file_type_nasa = file_resolution(picture_url)
-        path = "{0}/{1}{2}{3}".format(directory_nasa,
-                                      filename_nasa,
-                                      picture_number,
-                                      file_type_nasa
-                                      )
+        path = "{0}/{1}{2}{3}".format(
+            directory_nasa,
+            filename_nasa,
+            picture_number,
+            file_type_nasa
+        )
         save_picture(picture_url, path)
 
 
