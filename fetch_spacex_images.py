@@ -17,7 +17,9 @@ def create_parser():
        Если фотографии при запуске не были сделаны будет выведено сообщение
        об этом"""
         )
-    parser.add_argument('flight_id', nargs='?')
+    parser.add_argument('flight_id',
+                        nargs='?',
+                        type=str)
     return parser
 
 
@@ -58,7 +60,6 @@ def fetch_spacex_images(flight_id):
 def main():
 
     os.makedirs(DIRECTORY_SPACEX, exist_ok=True)
-
     parser = create_parser()
     flight_id = parser.parse_args()
     fetch_spacex_images(flight_id)

@@ -18,7 +18,10 @@ def create_parser():
         argument_default=5
 
     )
-    parser.add_argument('entered_amount_pictures', nargs='?')
+    parser.add_argument('entered_amount_pictures',
+                        nargs='?',
+                        default=5,
+                        type=int)
     return parser
 
 

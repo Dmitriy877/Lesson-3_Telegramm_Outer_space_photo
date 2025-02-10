@@ -18,7 +18,10 @@ def create_parser():
         если аргумент не  указан будет загружено 5 фотографий""",
         argument_default=5
     )
-    parser.add_argument('entered_amount_pictures', nargs='?')
+    parser.add_argument('entered_amount_pictures',
+                        nargs='?',
+                        default=5,
+                        type=int)
     return parser
 
 

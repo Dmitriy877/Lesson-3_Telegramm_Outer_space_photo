@@ -12,7 +12,12 @@ images_list = os.listdir(r"images")
 
 
 def create_parser():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(
+        description="""Данный скрипт принимает в качестве аргумента название 
+        картинки в директории images и публикует ее в телеграмм канале, если 
+        название файла не указано то публикует случайную картинку из директории 
+        images."""
+        )
     parser.add_argument('image_name', nargs='?')
     return parser
 
