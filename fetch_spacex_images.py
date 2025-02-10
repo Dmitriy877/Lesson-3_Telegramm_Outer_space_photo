@@ -62,7 +62,7 @@ def main():
     os.makedirs(DIRECTORY_SPACEX, exist_ok=True)
     parser = create_parser()
     flight_id = parser.parse_args()
-    fetch_spacex_images(flight_id)
+    fetch_spacex_images(flight_id.flight_id)
 
 
 if __name__ == "__main__":
