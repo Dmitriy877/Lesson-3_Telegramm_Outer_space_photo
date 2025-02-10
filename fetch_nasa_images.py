@@ -18,18 +18,18 @@ def create_parser():
         argument_default=5
 
     )
-    parser.add_argument('entered_amount_pictures',
+    parser.add_argument('amount_pictures',
                         nargs='?',
                         default=5,
                         type=int)
     return parser
 
 
-def download_nasa_pictures(entered_amount_pictures, token):
+def download_nasa_pictures(entered_value, token):
     api_nasa_metod_url = 'https://api.nasa.gov/planetary/apod'
     payload = {
         "api_key": token,
-        "count": entered_amount_pictures
+        "count": entered_value
     }
     response = requests.get(api_nasa_metod_url, params=payload)
     response.raise_for_status
@@ -58,9 +58,9 @@ def main():
     os.makedirs(DIRECOTEY_NASA, exist_ok=True)
 
     parser = create_parser()
-    entered_amount_pictures = parser.parse_args()
+    entered_value = parser.parse_args()
 
-    download_nasa_pictures(entered_amount_pictures.entered_amount_pictures,
+    download_nasa_pictures(entered_value.amount_pictures,
                            token)
 
 

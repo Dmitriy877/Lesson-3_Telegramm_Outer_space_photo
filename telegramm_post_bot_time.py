@@ -30,8 +30,8 @@ def create_parser():
     return parser
 
 
-def photo_post(post_time):
-    post_time_hours = post_time * 3600
+def photo_post(entered_value):
+    post_time_hours = entered_value * 3600
     while (True):
         for image in images:
             bot.send_photo(chat_id=chat_id,
@@ -44,8 +44,8 @@ def photo_post(post_time):
 def main():
 
     parser = create_parser()
-    post_time = parser.parse_args()
-    photo_post(post_time.post_time)
+    entered_value = parser.parse_args()
+    photo_post(entered_value.post_time)
 
 
 if __name__ == "__main__":

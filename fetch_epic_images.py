@@ -18,14 +18,14 @@ def create_parser():
         если аргумент не  указан будет загружено 5 фотографий""",
         argument_default=5
     )
-    parser.add_argument('entered_amount_pictures',
+    parser.add_argument('amount_pictures',
                         nargs='?',
                         default=5,
                         type=int)
     return parser
 
 
-def download_epic_pictures(entered_amount_pictures, token):
+def download_epic_pictures(entered_value, token):
     load_dotenv()
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
@@ -42,7 +42,7 @@ def download_epic_pictures(entered_amount_pictures, token):
                                     params=payload)
 
         pictures.append(picture_link.url)
-        if entered_amount_pictures == number:
+        if entered_value == number:
             break
 
     for picture_number, picture_url in enumerate(pictures):
@@ -64,9 +64,9 @@ def main():
     os.makedirs(DIRECORY_EPIC, exist_ok=True)
 
     parser = create_parser()
-    entered_amount_pictures = parser.parse_args()
+    entered_value = parser.parse_args()
 
-    download_epic_pictures(entered_amount_pictures.entered_amount_pictures,
+    download_epic_pictures(entered_value.amount_pictures,
                            token)
 
 

@@ -22,10 +22,10 @@ def create_parser():
     return parser
 
 
-def post_image_name(image_name):
+def post_image_name(entered_value):
     bot = telegram.Bot(token=token)
     bot.send_photo(chat_id=chat_id,
-                   photo=open("images/{0}".format(image_name),
+                   photo=open("images/{0}".format(entered_value),
                               "rb"))
 
 
@@ -39,10 +39,10 @@ def post_random_image():
 def main():
 
     parser = create_parser()
-    image_name = parser.parse_args()
+    entered_value = parser.parse_args()
 
-    if image_name.image_name:
-        post_image_name(image_name.image_name)
+    if entered_value.image_name:
+        post_image_name(entered_value.image_name)
     else:
         post_random_image()  
 
