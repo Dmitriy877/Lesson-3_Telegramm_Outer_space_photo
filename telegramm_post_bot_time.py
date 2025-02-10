@@ -4,13 +4,8 @@ from dotenv import load_dotenv
 import random
 import time
 import argparse
-load_dotenv()
 
-
-token = os.environ["TELEGRAMM_API_KEY"]
-chat_id = "@OuterSpacePhoto"
 images = os.listdir(r"images")
-bot = telegram.Bot(token=token)
 
 
 def create_parser():
@@ -30,10 +25,11 @@ def create_parser():
     return parser
 
 
-def photo_post(entered_value):
+def photo_post(entered_value, token, chat_id):
     post_time_hours = entered_value * 3600
     while (True):
         for image in images:
+            bot = telegram.Bot(token=token)
             bot.send_photo(chat_id=chat_id,
                            photo=open("images/{0}".format(image),
                                       "rb"))
@@ -42,10 +38,13 @@ def photo_post(entered_value):
 
 
 def main():
+    load_dotenv()
+    token = os.environ["TELEGRAMM_API_KEY"]
+    chat_id = "@OuterSpacePhoto"
 
     parser = create_parser()
     entered_value = parser.parse_args()
-    photo_post(entered_value.post_time)
+    photo_post(entered_value.post_time, token, chat_id)
 
 
 if __name__ == "__main__":
