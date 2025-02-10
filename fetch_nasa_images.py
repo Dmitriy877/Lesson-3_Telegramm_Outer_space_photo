@@ -32,7 +32,7 @@ def download_nasa_pictures(entered_value, token):
         "count": entered_value
     }
     response = requests.get(api_nasa_metod_url, params=payload)
-    response.raise_for_status
+    response.raise_for_status()
     picture_nasa_urls = response.json()
     pictures = []
     for picture_number, picture in enumerate(picture_nasa_urls):

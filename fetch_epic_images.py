@@ -4,7 +4,7 @@ import os.path
 import argparse
 from dotenv import load_dotenv
 from save_picture_script import save_picture
-from file_resolution_script import file_resolution
+from file_resolution_script import return_file_resolution
 
 
 DIRECORY_EPIC = "images"
@@ -29,7 +29,7 @@ def download_epic_pictures(entered_value, token):
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
                             params=payload)
-    response.raise_for_status
+    response.raise_for_status()
     epic_urls = response.json()
     pictures = []
 
@@ -45,7 +45,7 @@ def download_epic_pictures(entered_value, token):
             break
 
     for picture_number, picture_url in enumerate(pictures):
-        file_type_epic = file_resolution(picture_url)
+        file_type_epic = return_file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(
             DIRECORY_EPIC,
             FILENAME_EPIC,
@@ -60,13 +60,39 @@ def main():
     load_dotenv()
     token = os.environ["NASA_EPIC_API_KEY"]
 
-    os.makedirs(DIRECORY_EPIC, exist_ok=True)
+    payload = {"api_key": token}
+    response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
+                            params=payload)
+    response.raise_for_status()
+    epic_urls = response.json()
+    pictures = []
 
-    parser = create_parser()
-    entered_value = parser.parse_args()
+    for number, epic_list in enumerate(epic_urls):
+        picture_name = epic_urls[number]["image"]
+        picture_date = epic_urls[number]["date"].split(" ")[0]
+        picture_date_url = picture_date.replace("-", "/")
+        picture_link = requests.get("https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png".format(picture_date_url, picture_name),
+                                    params=payload)
 
-    download_epic_pictures(entered_value.amount_pictures,
-                           token)
+        pictures.append(picture_link.url)
+
+    print(pictures)
+
+
+
+
+
+
+
+
+
+    # os.makedirs(DIRECORY_EPIC, exist_ok=True)
+
+    # parser = create_parser()
+    # entered_value = parser.parse_args()
+
+    # download_epic_pictures(entered_value.amount_pictures,
+    #                        token)
 
 
 if __name__ == "__main__":
