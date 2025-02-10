@@ -40,7 +40,7 @@ def photo_post(entered_value, token, chat_id):
 def main():
     load_dotenv()
     token = os.environ["TELEGRAMM_API_KEY"]
-    chat_id = "@OuterSpacePhoto"
+    chat_id = os.environ["TELEGRAMM_CHAT_ID"]
 
     parser = create_parser()
     entered_value = parser.parse_args()
