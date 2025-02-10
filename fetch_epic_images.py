@@ -26,7 +26,6 @@ def create_parser():
 
 
 def download_epic_pictures(entered_value, token):
-    load_dotenv()
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
                             params=payload)
