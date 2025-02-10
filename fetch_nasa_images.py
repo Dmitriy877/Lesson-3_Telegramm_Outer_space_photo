@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 from save_picture_script import save_picture
 from file_resolution_script import file_resolution
 
-directory_nasa = "images"
-filename_nasa = "nasa_image"
+DIRECOTEY_NASA = "images"
+FILENAME_NASA = "nasa_image"
 
 
 def create_parser():
@@ -39,8 +39,8 @@ def download_nasa_pictures(entered_amount_pictures, token):
     for picture_number, picture_url in enumerate(pictures):
         file_type_nasa = file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(
-            directory_nasa,
-            filename_nasa,
+            DIRECOTEY_NASA,
+            FILENAME_NASA,
             picture_number,
             file_type_nasa
         )
@@ -52,7 +52,7 @@ def main():
     load_dotenv()
     token = os.environ["NASA_EPIC_API_KEY"]
 
-    os.makedirs(directory_nasa, exist_ok=True)
+    os.makedirs(DIRECOTEY_NASA, exist_ok=True)
 
     parser = create_parser()
     entered_amount_pictures = parser.parse_args()

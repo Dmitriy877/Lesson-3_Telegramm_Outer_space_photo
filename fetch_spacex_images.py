@@ -4,9 +4,9 @@ import os.path
 import argparse
 from save_picture_script import save_picture
 
-directory_spacex = "images"
-filename_spacex = "spacex_image"
-file_type_spacex = ".jpeg"
+DIRECTORY_SPACEX = "images"
+FILENAME_SPACEX = "spacex_image"
+FILE_TYPE_SPACEX = ".jpeg"
 
 
 def create_parser():
@@ -30,10 +30,10 @@ def fetch_spacex_images(flight_id):
         picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
         for picture_number, picture_url in enumerate(picture_spacex_urls):
-            path = "{0}/{1}{2}{3}".format(directory_spacex,
-                                          filename_spacex,
+            path = "{0}/{1}{2}{3}".format(DIRECTORY_SPACEX,
+                                          FILENAME_SPACEX,
                                           picture_number,
-                                          file_type_spacex
+                                          FILE_TYPE_SPACEX
                                           )
             save_picture(picture_url, path)
 
@@ -45,10 +45,10 @@ def fetch_spacex_images(flight_id):
             picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
             for picture_number, picture_url in enumerate(picture_spacex_urls):
-                path = "{0}/{1}{2}{3}".format(directory_spacex,
-                                              filename_spacex,
+                path = "{0}/{1}{2}{3}".format(DIRECTORY_SPACEX,
+                                              FILENAME_SPACEX,
                                               picture_number,
-                                              file_type_spacex
+                                              FILE_TYPE_SPACEX
                                               )
             save_picture(picture_url, path)
         except KeyError:
@@ -57,7 +57,7 @@ def fetch_spacex_images(flight_id):
  
 def main():
 
-    os.makedirs(directory_spacex, exist_ok=True)
+    os.makedirs(DIRECTORY_SPACEX, exist_ok=True)
 
     parser = create_parser()
     flight_id = parser.parse_args()
