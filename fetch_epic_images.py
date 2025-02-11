@@ -37,10 +37,8 @@ def download_epic_pictures(entered_value, token):
         picture_name = epic_urls[number]["image"]
         picture_date = epic_urls[number]["date"].split(" ")[0]
         picture_date_url = picture_date.replace("-", "/")
-        picture_link = requests.get("https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png".format(picture_date_url, picture_name),
-                                    params=payload)
-
-        pictures.append(picture_link.url)
+        picture_link = "https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png".format(picture_date_url, picture_name)
+        pictures.append(picture_link)
         if entered_value == number:
             break
 
@@ -52,7 +50,7 @@ def download_epic_pictures(entered_value, token):
             picture_number,
             file_type_epic
         )
-        save_picture(picture_url, path)
+        save_picture(picture_url, path, payload)
 
 
 def main():

@@ -4,7 +4,7 @@ import os.path
 import argparse
 from dotenv import load_dotenv
 from save_picture_script import save_picture
-from file_resolution_script import file_resolution
+from file_resolution_script import return_file_resolution
 
 DIRECOTEY_NASA = "images"
 FILENAME_NASA = "nasa_image"
@@ -40,7 +40,7 @@ def download_nasa_pictures(entered_value, token):
         pictures.append(picture_link)
 
     for picture_number, picture_url in enumerate(pictures):
-        file_type_nasa = file_resolution(picture_url)
+        file_type_nasa = return_file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(
             DIRECOTEY_NASA,
             FILENAME_NASA,
