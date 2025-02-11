@@ -20,17 +20,19 @@ def create_parser():
 
 
 def post_image_name(entered_value, token, chat_id):
-    bot = telegram.Bot(token=token)
-    bot.send_photo(chat_id=chat_id,
-                   photo=open("images/{0}".format(entered_value),
-                              "rb"))
+    with open("images/{0}".format(entered_value), "rb") as photo:
+        bot = telegram.Bot(token=token)
+        bot.send_photo(chat_id=chat_id,
+                       photo=photo
+                       )
 
 
 def post_random_image(token, chat_id):
-    bot = telegram.Bot(token=token)
-    bot.send_photo(chat_id=chat_id,
-                   photo=open("images/{0}".format(random.choice(images)),
-                              "rb"))
+    with open("images/{0}".format(random.choice(images)), "rb") as photo:
+        bot = telegram.Bot(token=token)
+        bot.send_photo(chat_id=chat_id,
+                       photo=photo
+                       )
 
     
 def main():

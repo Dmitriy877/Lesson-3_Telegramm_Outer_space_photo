@@ -29,10 +29,11 @@ def photo_post(entered_value, token, chat_id):
     post_time_hours = entered_value * 3600
     while (True):
         for image in images:
-            bot = telegram.Bot(token=token)
-            bot.send_photo(chat_id=chat_id,
-                           photo=open("images/{0}".format(image),
-                                      "rb"))
+            with open("images/{0}".format(image), "rb") as photo:
+                bot = telegram.Bot(token=token)
+                bot.send_photo(chat_id=chat_id,
+                               photo=photo
+                               )
             time.sleep(post_time_hours)
         random.shuffle(images)
 
