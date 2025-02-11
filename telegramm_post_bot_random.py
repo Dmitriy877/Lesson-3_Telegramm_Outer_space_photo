@@ -3,6 +3,7 @@ import os
 from dotenv import load_dotenv
 import random
 import argparse
+from telegramm_post_image import post_image_name
 
 
 images = os.listdir(r"images")
@@ -17,14 +18,6 @@ def create_parser():
         )
     parser.add_argument('image_name', nargs='?')
     return parser
-
-
-def post_image_name(entered_value, token, chat_id):
-    with open("images/{0}".format(entered_value), "rb") as photo:
-        bot = telegram.Bot(token=token)
-        bot.send_photo(chat_id=chat_id,
-                       photo=photo
-                       )
 
 
 def post_random_image(token, chat_id):
