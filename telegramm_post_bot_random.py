@@ -6,9 +6,6 @@ import argparse
 from telegramm_post_image import post_image_name
 
 
-images = os.listdir(r"images")
-
-
 def create_parser():
     parser = argparse.ArgumentParser(
         description="""Данный скрипт принимает в качестве аргумента название 
@@ -20,7 +17,7 @@ def create_parser():
     return parser
 
 
-def post_random_image(token, chat_id):
+def post_random_image(token, chat_id, images):
     with open("images/{0}".format(random.choice(images)), "rb") as photo:
         bot = telegram.Bot(token=token)
         bot.send_photo(chat_id=chat_id,
@@ -32,6 +29,7 @@ def main():
     load_dotenv()
     token = os.environ["TELEGRAMM_API_KEY"]
     chat_id = "@OuterSpacePhoto"
+    images = os.listdir(r"images")
 
     parser = create_parser()
     args = parser.parse_args()
@@ -39,7 +37,7 @@ def main():
     if args.image_name:
         post_image_name(args.image_name, token, chat_id)
     else:
-        post_random_image(token, chat_id)  
+        post_random_image(token, chat_id, images)
 
 
 if __name__ == "__main__":
