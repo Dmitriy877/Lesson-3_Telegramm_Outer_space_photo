@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from save_picture_script import save_picture
 from file_resolution_script import return_file_resolution
 
-DIRECOTEY_NASA = "images"
+DIRECTORY_NASA = "images"
 FILENAME_NASA = "nasa_image"
 
 

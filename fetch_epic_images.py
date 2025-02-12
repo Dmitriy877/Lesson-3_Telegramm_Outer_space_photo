@@ -7,7 +7,7 @@ from save_picture_script import save_picture
 from file_resolution_script import return_file_resolution
 
 
-DIRECORY_EPIC = "images"
+DIRECTORY_EPIC = "images"
 FILENAME_EPIC = "epic_image"
 
 
