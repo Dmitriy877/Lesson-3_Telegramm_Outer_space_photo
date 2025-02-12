@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 import random
 import argparse
-from telegramm_post_image import post_image_name
+from telegramm_post_image import post_image
 
 
 def create_parser():
@@ -36,7 +36,7 @@ def main():
     args = parser.parse_args()
 
     if args.image_name:
-        post_image_name(args.image_name, token, chat_id)
+        post_image(args.image_name, token, chat_id)
     else:
         post_random_image(token, chat_id, images)
 
