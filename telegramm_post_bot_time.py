@@ -28,10 +28,10 @@ def create_parser():
 
 def photo_post(args, token, chat_id):
     post_time_hours = args * 3600
+    bot = telegram.Bot(token=token)
     while (True):
         for image in images:
             with open("images/{0}".format(image), "rb") as photo:
-                bot = telegram.Bot(token=token)
                 bot.send_photo(
                                chat_id=chat_id,
                                photo=photo
