@@ -45,7 +45,7 @@ def download_epic_pictures(amount_pictures, token):
     for picture_number, picture_url in enumerate(pictures):
         file_type_epic = return_file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(
-            DIRECORY_EPIC,
+            DIRECTORY_EPIC,
             FILENAME_EPIC,
             picture_number,
             file_type_epic

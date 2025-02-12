@@ -42,7 +42,7 @@ def download_nasa_pictures(amount_pictures, token):
     for picture_number, picture_url in enumerate(pictures):
         file_type_nasa = return_file_resolution(picture_url)
         path = "{0}/{1}{2}{3}".format(
-            DIRECOTEY_NASA,
+            DIRECTORY_NASA,
             FILENAME_NASA,
             picture_number,
             file_type_nasa
@@ -55,7 +55,7 @@ def main():
     load_dotenv()
     token = os.environ["NASA_EPIC_API_KEY"]
 
-    os.makedirs(DIRECOTEY_NASA, exist_ok=True)
+    os.makedirs(DIRECTORY_NASA, exist_ok=True)
 
     parser = create_parser()
     args = parser.parse_args()
