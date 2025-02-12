@@ -1,4 +1,3 @@
-import telegram
 import os
 from dotenv import load_dotenv
 import random
@@ -17,20 +16,11 @@ def create_parser():
     return parser
 
 
-def post_random_image(token, chat_id, images):
-    bot = telegram.Bot(token=token)
-    with open("images/{0}".format(random.choice(images)), "rb") as photo:
-        bot.send_photo(
-                       chat_id=chat_id,
-                       photo=photo
-                       )
-
-    
 def main():
     load_dotenv()
     token = os.environ["TELEGRAMM_API_KEY"]
     chat_id = os.environ["TELEGRAMM_CHAT_ID"]
-    images = os.listdir(r"images")
+    random_image = random.choice(os.listdir(r"images"))
 
     parser = create_parser()
     args = parser.parse_args()
@@ -38,7 +28,8 @@ def main():
     if args.image_name:
         post_image(args.image_name, token, chat_id)
     else:
-        post_random_image(token, chat_id, images)
+
+        post_image(random_image, token, chat_id)
 
 
 if __name__ == "__main__":
