@@ -25,7 +25,7 @@ def create_parser():
     return parser
 
 
-def download_epic_pictures(args, token):
+def download_epic_pictures(amount_pictures, token):
     payload = {"api_key": token}
     response = requests.get("https://api.nasa.gov/EPIC/api/natural/images", 
                             params=payload)
@@ -39,7 +39,7 @@ def download_epic_pictures(args, token):
         picture_date_url = picture_date.replace("-", "/")
         picture_link = "https://api.nasa.gov/EPIC/archive/natural/{0}/png/{1}.png".format(picture_date_url, picture_name)
         pictures.append(picture_link)
-        if args == number:
+        if amount_pictures == number:
             break
 
     for picture_number, picture_url in enumerate(pictures):
