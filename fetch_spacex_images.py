@@ -23,26 +23,8 @@ def create_parser():
     return parser
 
 
-def fetch_spacex_certain_launch_images(args):
-    api_spacex_metod_url = 'https://api.spacexdata.com/v3/launches'
-    payload = {"flight_id": args.flight_id}
-    response = requests.get(api_spacex_metod_url, params=payload)
-    response.raise_for_status()
-    picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
-
-    for picture_number, picture_url in enumerate(picture_spacex_urls):
-        path = "{0}/{1}{2}{3}".format(
-                                      DIRECTORY_SPACEX,
-                                      FILENAME_SPACEX,
-                                      picture_number,
-                                      FILE_TYPE_SPACEX
-                                      )
-        save_picture(picture_url, path)
-
-
-def fetch_spacex_latest_launch_images():
-    api_spacex_metod_url = 'https://api.spacexdata.com/v5/launches/latest'
-    response = requests.get(api_spacex_metod_url)
+def fetch_spacex_launch_images(api_spacex_metod, payload=""):
+    response = requests.get(api_spacex_metod, params=payload)
     response.raise_for_status()
     picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
@@ -61,12 +43,15 @@ def main():
     os.makedirs(DIRECTORY_SPACEX, exist_ok=True)
     parser = create_parser()
     args = parser.parse_args()
+    api_spacex_metod_certain_launch = 'https://api.spacexdata.com/v3/launches'
+    api_spacex_metod_latest_launch = 'https://api.spacexdata.com/v5/launches/latest'
+    payload = {"flight_id": args.flight_id}
 
     if args.flight_id:
-        fetch_spacex_certain_launch_images(args)
+        fetch_spacex_launch_images(api_spacex_metod_certain_launch, payload)
     else:
         try:
-            fetch_spacex_latest_launch_images()
+            fetch_spacex_launch_images(api_spacex_metod_latest_launch)
         except KeyError:
             print("""Во время запуска фотографии не были сделаны! 
                 Укажите id запуска""")
