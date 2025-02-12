@@ -20,7 +20,8 @@ def create_parser():
 def post_random_image(token, chat_id, images):
     with open("images/{0}".format(random.choice(images)), "rb") as photo:
         bot = telegram.Bot(token=token)
-        bot.send_photo(chat_id=chat_id,
+        bot.send_photo(
+                       chat_id=chat_id,
                        photo=photo
                        )
 

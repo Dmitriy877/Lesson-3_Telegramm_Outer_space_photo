@@ -31,7 +31,8 @@ def fetch_spacex_certain_launch_images(args):
     picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
     for picture_number, picture_url in enumerate(picture_spacex_urls):
-        path = "{0}/{1}{2}{3}".format(DIRECTORY_SPACEX,
+        path = "{0}/{1}{2}{3}".format(
+                                      DIRECTORY_SPACEX,
                                       FILENAME_SPACEX,
                                       picture_number,
                                       FILE_TYPE_SPACEX
@@ -46,7 +47,8 @@ def fetch_spacex_latest_launch_images():
     picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
 
     for picture_number, picture_url in enumerate(picture_spacex_urls):
-        path = "{0}/{1}{2}{3}".format(DIRECTORY_SPACEX,
+        path = "{0}/{1}{2}{3}".format(
+                                      DIRECTORY_SPACEX,
                                       FILENAME_SPACEX,
                                       picture_number,
                                       FILE_TYPE_SPACEX

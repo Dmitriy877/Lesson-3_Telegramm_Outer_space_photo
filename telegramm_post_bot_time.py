@@ -17,7 +17,8 @@ def create_parser():
         публикацию заново.""",
         argument_default=4
         )
-    parser.add_argument("post_time",
+    parser.add_argument(
+                        "post_time",
                         nargs="?",
                         default=4,
                         type=int
@@ -31,7 +32,8 @@ def photo_post(args, token, chat_id):
         for image in images:
             with open("images/{0}".format(image), "rb") as photo:
                 bot = telegram.Bot(token=token)
-                bot.send_photo(chat_id=chat_id,
+                bot.send_photo(
+                               chat_id=chat_id,
                                photo=photo
                                )
             time.sleep(post_time_hours)
