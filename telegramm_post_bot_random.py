@@ -28,7 +28,7 @@ def post_random_image(token, chat_id, images):
 def main():
     load_dotenv()
     token = os.environ["TELEGRAMM_API_KEY"]
-    chat_id = "@OuterSpacePhoto"
+    chat_id = os.environ["TELEGRAMM_CHAT_ID"]
     images = os.listdir(r"images")
 
     parser = create_parser()
