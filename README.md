@@ -42,7 +42,7 @@ Python3 должен быть установлен.
 
 ### Как запустить
 
-Для запуска скриптов убедитесь что вложили в папку с скриптом файл .env с переменными `NASA_EPIC_API_KEY, ELEGRAMM_API_KEY` и передали в данную переменную соответсвующие токены, а также указали chat id бота в скриптах telegramm_post_bot_random.py, telegramm_post_bot_time.py.
+Для запуска скриптов убедитесь что вложили в папку с скриптом файл .env с переменными `NASA_EPIC_API_KEY, TELEGRAMM_API_KEY, TELEGRAMM_CHAT_ID` и передали в данную переменную соответсвующие токены, а также указали chat id бота в скриптах telegramm_post_bot_random.py, telegramm_post_bot_time.py.
 
 Например:
 
