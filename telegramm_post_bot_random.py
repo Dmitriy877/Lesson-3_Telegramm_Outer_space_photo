@@ -34,10 +34,10 @@ def main():
     chat_id = "@OuterSpacePhoto"
 
     parser = create_parser()
-    entered_value = parser.parse_args()
+    args = parser.parse_args()
 
-    if entered_value.image_name:
-        post_image_name(entered_value.image_name, token, chat_id)
+    if args.image_name:
+        post_image_name(args.image_name, token, chat_id)
     else:
         post_random_image(token, chat_id)  
 

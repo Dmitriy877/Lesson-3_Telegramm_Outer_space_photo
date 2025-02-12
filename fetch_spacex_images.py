@@ -23,9 +23,9 @@ def create_parser():
     return parser
 
 
-def fetch_spacex_certain_launch_images(flight_id):
+def fetch_spacex_certain_launch_images(args):
     api_spacex_metod_url = 'https://api.spacexdata.com/v3/launches'
-    payload = {"flight_id": flight_id.flight_id}
+    payload = {"flight_id": args.flight_id}
     response = requests.get(api_spacex_metod_url, params=payload)
     response.raise_for_status()
     picture_spacex_urls = response.json()[0]["links"]["flickr_images"]
@@ -58,10 +58,10 @@ def main():
 
     os.makedirs(DIRECTORY_SPACEX, exist_ok=True)
     parser = create_parser()
-    flight_id = parser.parse_args()
+    args = parser.parse_args()
 
-    if flight_id.flight_id:
-        fetch_spacex_certain_launch_images(flight_id)
+    if args.flight_id:
+        fetch_spacex_certain_launch_images(args)
     else:
         try:
             fetch_spacex_latest_launch_images()

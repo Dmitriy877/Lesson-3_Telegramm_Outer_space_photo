@@ -25,8 +25,8 @@ def create_parser():
     return parser
 
 
-def photo_post(entered_value, token, chat_id):
-    post_time_hours = entered_value * 3600
+def photo_post(args, token, chat_id):
+    post_time_hours = args * 3600
     while (True):
         for image in images:
             with open("images/{0}".format(image), "rb") as photo:
@@ -44,8 +44,8 @@ def main():
     chat_id = os.environ["TELEGRAMM_CHAT_ID"]
 
     parser = create_parser()
-    entered_value = parser.parse_args()
-    photo_post(entered_value.post_time, token, chat_id)
+    args = parser.parse_args()
+    photo_post(args.post_time, token, chat_id)
 
 
 if __name__ == "__main__":
