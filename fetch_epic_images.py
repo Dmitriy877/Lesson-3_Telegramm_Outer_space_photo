@@ -58,7 +58,7 @@ def main():
     load_dotenv()
     token = os.environ["NASA_EPIC_API_KEY"]
 
-    os.makedirs(DIRECORY_EPIC, exist_ok=True)
+    os.makedirs(DIRECTORY_EPIC, exist_ok=True)
 
     parser = create_parser()
     args = parser.parse_args()
